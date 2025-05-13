@@ -56,9 +56,20 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.bounds.width/3 - 10, height: 100)
+        
+
+        let width = collectionView.frame.size.width/3 - 10
+        return CGSize(width: width, height: width)
+        
+//        CGSize(width: view.bounds.width/4 - 8, height: view.bounds.width/4)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        10
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        10
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         

@@ -18,30 +18,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
-                                <rect key="frame" x="0.0" y="173" width="393" height="611"/>
+                                <rect key="frame" x="10" y="173" width="373" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ahK-3D-NtU">
+                                <inset key="scrollIndicatorInsets" minX="35" minY="0.0" maxX="35" maxY="0.0"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="ahK-3D-NtU">
                                     <size key="itemSize" width="128" height="128"/>
+                                    <size key="estimatedItemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="35" minY="0.0" maxX="35" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="FCk-ff-R7A">
-                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <rect key="frame" x="35" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aZn-Cb-Yej">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayL-OL-Tjc">
-                                <rect key="frame" x="323" y="118" width="45" height="45"/>
+                                <rect key="frame" x="333" y="123" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="l99-ak-lAW"/>
-                                    <constraint firstAttribute="width" constant="45" id="zQ2-nl-OIy"/>
+                                    <constraint firstAttribute="height" constant="35" id="l99-ak-lAW"/>
+                                    <constraint firstAttribute="width" constant="35" id="zQ2-nl-OIy"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" image="plus" catalog="system" cornerStyle="capsule"/>
@@ -53,12 +55,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="w2X-QF-knh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="O1K-pe-kBZ"/>
+                            <constraint firstItem="w2X-QF-knh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="O1K-pe-kBZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w2X-QF-knh" secondAttribute="bottom" id="U7F-aD-O47"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="coh-cW-ysU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w2X-QF-knh" secondAttribute="trailing" id="hma-8A-KUE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w2X-QF-knh" secondAttribute="trailing" constant="10" id="hma-8A-KUE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ayL-OL-Tjc" secondAttribute="trailing" constant="25" id="oou-sy-EGQ"/>
-                            <constraint firstItem="ayL-OL-Tjc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sIx-oT-Nil"/>
+                            <constraint firstItem="ayL-OL-Tjc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="sIx-oT-Nil"/>
                         </constraints>
                     </view>
                     <connections>
