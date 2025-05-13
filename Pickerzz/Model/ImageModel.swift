@@ -10,11 +10,10 @@ import UIKit
 
 class ImageModel{
     
-    var name:String?
-    var image:UIImage?
+    var imageItem:ImageEntity
     
-    init(name: String? = nil, image: UIImage? = nil) {
-        self.name = name
-        self.image = image
+    init (imageItem:ImageEntity){
+        self.imageItem = imageItem
     }
+    
 }

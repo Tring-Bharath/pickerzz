@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
-                                <rect key="frame" x="0.0" y="158" width="393" height="626"/>
+                                <rect key="frame" x="0.0" y="173" width="393" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ahK-3D-NtU">
                                     <size key="itemSize" width="128" height="128"/>
@@ -27,7 +27,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FCk-ff-R7A">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="FCk-ff-R7A">
                                         <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aZn-Cb-Yej">
@@ -38,10 +38,10 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayL-OL-Tjc">
-                                <rect key="frame" x="333" y="118" width="35" height="35"/>
+                                <rect key="frame" x="323" y="118" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="l99-ak-lAW"/>
-                                    <constraint firstAttribute="width" constant="35" id="zQ2-nl-OIy"/>
+                                    <constraint firstAttribute="height" constant="45" id="l99-ak-lAW"/>
+                                    <constraint firstAttribute="width" constant="45" id="zQ2-nl-OIy"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" image="plus" catalog="system" cornerStyle="capsule"/>
@@ -55,7 +55,7 @@
                         <constraints>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="O1K-pe-kBZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w2X-QF-knh" secondAttribute="bottom" id="U7F-aD-O47"/>
-                            <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="coh-cW-ysU"/>
+                            <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="coh-cW-ysU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w2X-QF-knh" secondAttribute="trailing" id="hma-8A-KUE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ayL-OL-Tjc" secondAttribute="trailing" constant="25" id="oou-sy-EGQ"/>
                             <constraint firstItem="ayL-OL-Tjc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sIx-oT-Nil"/>

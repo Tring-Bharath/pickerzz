@@ -30,10 +30,10 @@ class ViewController: UIViewController, CellDelegate {
         imageCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
         imageCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         CoreDataManager.shared.onDataUpdate = { [weak self] in
-                DispatchQueue.main.async {
-                    self?.imageCollectionView.reloadData()
-                }
+            DispatchQueue.main.async {
+                self?.imageCollectionView.reloadData()
             }
+        }
     }
     
 }
@@ -48,7 +48,9 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
         
         let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
         cell.cellDelegate = self
-        cell.loadData(index: indexPath.row)
+        let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
+        let imageModel = ImageModel(imageItem: imageItem)
+        cell.loadData(imageItem:imageModel)
         return cell
         
     }
@@ -76,9 +78,6 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
 
     }
     
-    func passVC()-> UIViewController{
-        return self
-    }
     
 }
 

@@ -14,7 +14,6 @@ class CoreDataManager{
     static let shared = CoreDataManager()
     var onDataUpdate: (() -> Void)?
     let persistentContainer : NSPersistentContainer
-    let constant = PickerzzConstant()
     
     private init(){
         persistentContainer = NSPersistentContainer(name: "ImageDataModel")
@@ -40,6 +39,7 @@ class CoreDataManager{
     }
     
     func fetchData()->[ImageEntity]{
+        
         let fetchRequest:NSFetchRequest<ImageEntity> = ImageEntity.fetchRequest()
         do{
             let result = try context.fetch(fetchRequest)

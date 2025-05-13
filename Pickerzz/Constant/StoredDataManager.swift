@@ -1,19 +1,11 @@
 //
-//  PickerzzConstant.swift
+//  StoredDataManager.swift
 //  Pickerzz
 //
-//  Created by Bharath on 12/05/25.
+//  Created by Bharath on 13/05/25.
 //
 
 import Foundation
-
-
-class PickerzzConstant{
-    
-    
-
-}
-
 
 class StoredDataManager{
     

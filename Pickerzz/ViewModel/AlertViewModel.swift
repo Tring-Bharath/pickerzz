@@ -14,11 +14,11 @@ class AlertViewModel{
     
     func addImageName(image:UIImage)->UIAlertController{
         
-        let addAlert = UIAlertController(title: "Insert Name", message: "Add name to your image", preferredStyle: .alert)
+        let addAlert = UIAlertController(title: Constant.Alert.Add.title, message: Constant.Alert.Add.desc, preferredStyle: .alert)
         addAlert.addTextField()
         
-        let cancelBtn = UIAlertAction(title: "Cancel", style: .default)
-        let addBtn = UIAlertAction(title: "Add", style: .default){ _ in
+        let cancelBtn = UIAlertAction(title: Constant.Alert.cancel, style: .default)
+        let addBtn = UIAlertAction(title: Constant.Alert.add, style: .default){ _ in
             guard let imageName = addAlert.textFields?.first?.text else{
                 return
             }
@@ -33,10 +33,10 @@ class AlertViewModel{
     
     func deleteImage(objectId:NSManagedObjectID) -> UIAlertController{
         
-        let deleteAlert = UIAlertController(title: "Delete", message: "Delete Image", preferredStyle: .alert)
+        let deleteAlert = UIAlertController(title: Constant.Alert.Delete.title, message: Constant.Alert.Delete.desc, preferredStyle: .alert)
         
-        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel)
-        let deleteBtn = UIAlertAction(title: "Delete", style: .default){ _ in
+        let cancelBtn = UIAlertAction(title: Constant.Alert.cancel, style: .cancel)
+        let deleteBtn = UIAlertAction(title: Constant.Alert.delete, style: .default){ _ in
             
             CoreDataManager.shared.deleteObject(objectID: objectId)
             

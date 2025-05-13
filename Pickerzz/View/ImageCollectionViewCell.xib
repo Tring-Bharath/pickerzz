@@ -20,13 +20,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="208" height="154"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAT-U2-Fp1">
-                        <rect key="frame" x="0.0" y="154" width="208" height="35"/>
+                        <rect key="frame" x="0.0" y="189" width="208" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="MnL-sY-2xs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MnL-sY-2xs"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
             </view>

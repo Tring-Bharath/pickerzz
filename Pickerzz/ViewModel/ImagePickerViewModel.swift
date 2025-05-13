@@ -8,6 +8,7 @@ import UIKit
 import Foundation
 
 class ImagePickerViewModel{
+    
     var imagePicker = UIImagePickerController()
     
     func presentImagePicker(view:ViewController,animated:Bool){
