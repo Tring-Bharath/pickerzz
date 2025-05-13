@@ -38,18 +38,22 @@ class ViewController: UIViewController, CellDelegate {
             imageCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
             isCollectionView = true
         }
-        imageCollectionView.reloadData()
+        UIView.transition(with: imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.imageCollectionView.reloadData()}, completion: nil)
+
+
     }
     func initSetUp(){
         
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         imageCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
-        
+         
         imageCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         CoreDataManager.shared.onDataUpdate = { [weak self] in
             DispatchQueue.main.async {
-                self?.imageCollectionView.reloadData()
+//                self?.imageCollectionView.reloadData()
+                guard let strongSelf = self else { return }
+                UIView.transition(with: strongSelf.imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self?.imageCollectionView.reloadData()}, completion: nil)
             }
         }
         toggleViewBtn.setTitle("Table View", for: .normal)
@@ -81,11 +85,6 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             cell.loadData(imageItem:imageModel)
             return cell
         }
-//        cell.cellDelegate = self
-//        let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
-//        let imageModel = ImageModel(imageItem: imageItem)
-//        cell.loadData(imageItem:imageModel)
-//        return cell
         
     }
     
@@ -103,7 +102,7 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             cellWidth = collectionView.frame.size.width + 20
             cellHeight = 100
         }
-        
+
         return CGSize(width: cellWidth , height: cellHeight)
         
     }
