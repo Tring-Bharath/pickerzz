@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
                                 <rect key="frame" x="10" y="173" width="373" height="611"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="scrollIndicatorInsets" minX="35" minY="0.0" maxX="35" maxY="0.0"/>
@@ -51,10 +51,23 @@
                                     <action selector="addImageBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FWd-bq-tkt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-0U-2kh">
+                                <rect key="frame" x="279" y="123" width="24" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ir1-4R-ZMM"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray"/>
+                                <connections>
+                                    <action selector="toggleViewBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WmT-pa-HyX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ayL-OL-Tjc" firstAttribute="leading" secondItem="aQs-0U-2kh" secondAttribute="trailing" constant="30" id="24q-dI-dFk"/>
+                            <constraint firstItem="aQs-0U-2kh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="MDc-rZ-TJN"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="O1K-pe-kBZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w2X-QF-knh" secondAttribute="bottom" id="U7F-aD-O47"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="coh-cW-ysU"/>
@@ -65,11 +78,12 @@
                     </view>
                     <connections>
                         <outlet property="ImageCollectionView" destination="w2X-QF-knh" id="9Ye-Ls-swW"/>
+                        <outlet property="toggleViewBtn" destination="aQs-0U-2kh" id="GZE-hE-DTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-34"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>

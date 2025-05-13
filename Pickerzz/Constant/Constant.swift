@@ -3,6 +3,7 @@ import Foundation
 
 struct Constant{
     
+    
     struct Alert{
         
         static let cancel = "Cancel"
