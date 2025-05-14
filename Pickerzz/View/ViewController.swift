@@ -51,7 +51,6 @@ class ViewController: UIViewController, CellDelegate {
         imageCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         CoreDataManager.shared.onDataUpdate = { [weak self] in
             DispatchQueue.main.async {
-//                self?.imageCollectionView.reloadData()
                 guard let strongSelf = self else { return }
                 UIView.transition(with: strongSelf.imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self?.imageCollectionView.reloadData()}, completion: nil)
             }
@@ -69,21 +68,24 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
+        let imageModel = ImageModel(imageItem: imageItem)
+        
         if(!isCollectionView ){
+            
             let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageTableViewCell", for: indexPath) as! ImageTableViewCell
             cell.cellDelegate = self
-            let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
-            let imageModel = ImageModel(imageItem: imageItem)
             cell.loadData(imageItem:imageModel)
             return cell
+            
         }
         else{
+            
             let cell = imageCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
             cell.cellDelegate = self
-            let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
-            let imageModel = ImageModel(imageItem: imageItem)
             cell.loadData(imageItem:imageModel)
             return cell
+            
         }
         
     }
@@ -93,13 +95,14 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
         
         var cellWidth:CGFloat
         var cellHeight:CGFloat
+        
         if(isCollectionView){
             cellWidth = collectionView.frame.size.width/3 - 10
             cellHeight = cellWidth
         }
         else{
             
-            cellWidth = collectionView.frame.size.width + 20
+            cellWidth = collectionView.frame.size.width
             cellHeight = 100
         }
 
