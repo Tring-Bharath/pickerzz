@@ -9,6 +9,7 @@ import UIKit
 
 class LoginPageViewController: UIViewController {
 
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var phoneNumber: UIView!
     
@@ -16,10 +17,20 @@ class LoginPageViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        let backBtn:UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .done, target: self, action: #selector(backBtnAction))
+        self.navigationItem.setLeftBarButton(backBtn, animated: true)
+    }
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func backBtnAction(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func loginBtn(_ sender: Any) {
@@ -31,10 +42,12 @@ class LoginPageViewController: UIViewController {
 
         if(UserDefaultsManager.shared.loginUser(user: UserModel(phoneNumber: phoneNumber, password: password))){
             let pickerzzVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
-            self.navigationController?.pushViewController(pickerzzVC, animated: true)
+            let pickerzzNavVC = UINavigationController(rootViewController: pickerzzVC)
+            pickerzzNavVC.modalPresentationStyle = .fullScreen
+            self.present(pickerzzNavVC, animated: true)
         }
         else{
-            print("Login Unsucessful")
+            errorLabel.text = "Invalid Phone Number or Password"
         }
     }
     

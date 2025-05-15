@@ -25,6 +25,9 @@ class ViewController: UIViewController, CellDelegate {
         imagePicker.imagePicker.delegate = self
         imagePicker.presentImagePicker(view:self,animated:true)
     }
+    @IBAction func logoutBtn(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     @IBAction func toggleViewBtn(_ sender: Any) {
         

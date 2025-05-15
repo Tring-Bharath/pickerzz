@@ -9,6 +9,7 @@ import UIKit
 
 class FirstPageViewController: UIViewController {
 
+    let viewModel = RegistrationViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,13 +17,11 @@ class FirstPageViewController: UIViewController {
     }
     
     @IBAction func loginBtn(_ sender: Any) {
-        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageViewController")
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        viewModel.navigatePage(viewController: "LoginPageViewController", navigationController: self.navigationController!)
     }
     
     @IBAction func signUpBtn(_ sender: Any) {
-        let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController")
-        self.navigationController?.pushViewController(signUpVC, animated: true)
+        viewModel.navigatePage(viewController: "SignUpViewController", navigationController: self.navigationController!)
     }
     
 

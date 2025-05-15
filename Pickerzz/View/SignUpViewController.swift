@@ -16,35 +16,65 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var confirmPassWordTextField: UITextField!
     
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    let signUpViewModel = SignUpViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        let backBtn:UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .done, target: self, action: #selector(backBtnAction))
+        self.navigationItem.setLeftBarButton(backBtn, animated: true)
         // Do any additional setup after loading the view.
     }
     
-
     @IBAction func signUpBtn(_ sender: Any) {
-        if(passwordTextField.text == confirmPassWordTextField.text){
-            
-            guard let phoneNumber = phoneNumberTextField.text , let password = passwordTextField.text else{
-                print("text Field is Empty")
-                return
-            }
-
-            UserDefaultsManager.shared.signUp(user: UserModel(phoneNumber: phoneNumber, password: password))
-            let pickerzzVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
-            self.navigationController?.pushViewController(pickerzzVC, animated: true)
+        let phoneNumber = phoneNumberTextField.text
+        let password = passwordTextField.text
+        let confirmPassword = confirmPassWordTextField.text
+        let userName = usernameTextField.text
+        
+        if(!signUpViewModel.missingTextFieldValidation(mobileNumber: phoneNumber, password: password, confirmPassword: confirmPassword, userName: userName)){
+            errorLabel.text = "Fill all the Fields"
+            return
         }
-        else{
-            print("password doesn't match")
+        
+        if(!signUpViewModel.passwordCheckValidation(password: password!, confirmPassword: confirmPassword!)){
+            errorLabel.text = "Password doesn't match"
+            return
         }
+        
+        if(!signUpViewModel.mobileNumberValidation(mobileNumber: phoneNumber!)){
+            errorLabel.text = "Invalid Mobile Number"
+            return
+        }
+        
+        UserDefaultsManager.shared.signUp(user: UserModel(phoneNumber: phoneNumber!, password: password!))
+        signUpViewModel.navigatePage(viewController: "LoginPageViewController", navigationController: self.navigationController!)
+        
+//        if(passwordTextField.text == confirmPassWordTextField.text){
+//            
+//            guard let phoneNumber = phoneNumberTextField.text , let password = passwordTextField.text else{
+//                print("text Field is Empty")
+//                return
+//            }
+//
+//            UserDefaultsManager.shared.signUp(user: UserModel(phoneNumber: phoneNumber, password: password))
+//            signUpViewModel.navigatePage(viewController: "LoginPageViewController", navigationController: self.navigationController!)
+//        }
+//        else{
+//            print("password doesn't match")
+//        }
         
     }
     @IBAction func navLoginBtn(_ sender: Any) {
         let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageViewController")
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    @objc func backBtnAction(){
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
