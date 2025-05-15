@@ -34,6 +34,7 @@ class CoreDataManager{
         let imageObject = NSManagedObject(entity: imageEntity, insertInto: context)
         imageObject.setValue(image.pngData(), forKey: "image")
         imageObject.setValue(name, forKey: "name")
+        imageObject.setValue(Date(), forKey: "date")
         saveData()
         
     }

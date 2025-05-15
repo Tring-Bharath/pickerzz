@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginPageViewController: UIViewController {
+class LoginPageViewController: BaseViewController {
 
     @IBOutlet weak var errorLabel: UILabel!
     
@@ -17,24 +17,30 @@ class LoginPageViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var errorLabelHeightConstraint: NSLayoutConstraint!
+    
+    let loginViewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        let backBtn:UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .done, target: self, action: #selector(backBtnAction))
-        self.navigationItem.setLeftBarButton(backBtn, animated: true)
+        setUpNavBarButton()
     }
+    
     @IBAction func backButton(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func backBtnAction(){
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     @IBAction func loginBtn(_ sender: Any) {
         
+        guard let phoneNumber = phoneNumberTextField.text else{
+            return
+        }
+        
+        if(!loginViewModel.mobileNumberValidation(mobileNumber: phoneNumber)){
+            showError(message: "Invalid Mobile Number")
+            return
+        }
         
         guard let phoneNumber = phoneNumberTextField.text, let password = passwordTextField.text else{
             return
@@ -47,7 +53,7 @@ class LoginPageViewController: UIViewController {
             self.present(pickerzzNavVC, animated: true)
         }
         else{
-            errorLabel.text = "Invalid Phone Number or Password"
+            showError(message: "Invalid Phone Number or Password")
         }
     }
     
@@ -55,6 +61,25 @@ class LoginPageViewController: UIViewController {
         let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController")
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    func showError(message: String) {
+        UIView.animate(withDuration: 0.3) {
+            self.errorLabelHeightConstraint.constant = 25
+            self.errorLabel.text = message
+            self.view.layoutIfNeeded()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+            self.hideError()
+        })
+    }
+    
+    func hideError() {
+        UIView.animate(withDuration: 0.3) {
+            self.errorLabelHeightConstraint.constant = 0
+            self.errorLabel.text = ""
+            self.view.layoutIfNeeded()
+        }
     }
     
 }

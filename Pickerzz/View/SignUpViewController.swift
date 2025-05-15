@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -22,9 +22,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        let backBtn:UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .done, target: self, action: #selector(backBtnAction))
-        self.navigationItem.setLeftBarButton(backBtn, animated: true)
+        setUpNavBarButton()
         // Do any additional setup after loading the view.
     }
     
@@ -51,30 +49,13 @@ class SignUpViewController: UIViewController {
         
         UserDefaultsManager.shared.signUp(user: UserModel(phoneNumber: phoneNumber!, password: password!))
         signUpViewModel.navigatePage(viewController: "LoginPageViewController", navigationController: self.navigationController!)
-        
-//        if(passwordTextField.text == confirmPassWordTextField.text){
-//            
-//            guard let phoneNumber = phoneNumberTextField.text , let password = passwordTextField.text else{
-//                print("text Field is Empty")
-//                return
-//            }
-//
-//            UserDefaultsManager.shared.signUp(user: UserModel(phoneNumber: phoneNumber, password: password))
-//            signUpViewModel.navigatePage(viewController: "LoginPageViewController", navigationController: self.navigationController!)
-//        }
-//        else{
-//            print("password doesn't match")
-//        }
+
         
     }
     @IBAction func navLoginBtn(_ sender: Any) {
         let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageViewController")
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.pushViewController(loginVC, animated: true)
-    }
-    
-    @objc func backBtnAction(){
-        self.navigationController?.popViewController(animated: true)
     }
     
 }

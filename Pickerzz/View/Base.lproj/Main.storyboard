@@ -100,6 +100,61 @@
             </objects>
             <point key="canvasLocation" x="1057.2519083969464" y="-34.507042253521128"/>
         </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="2Ie-Ij-R8j">
+            <objects>
+                <viewController storyboardIdentifier="ImageDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1zR-l5-p4a" customClass="ImageDetailViewController" customModule="Pickerzz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XxI-bA-Lpm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bpf-Qq-nue">
+                                <rect key="frame" x="0.0" y="118" width="393" height="444"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="444" id="bot-OZ-SWV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOh-4J-3yr">
+                                <rect key="frame" x="21.666666666666657" y="594" width="350" height="31.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="YJn-XJ-OqZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-ms-4jX">
+                                <rect key="frame" x="21.666666666666657" y="633.33333333333337" width="350" height="25.333333333333371"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="zBU-mY-R4b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Td8-0B-YWb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JcU-ms-4jX" firstAttribute="centerX" secondItem="Td8-0B-YWb" secondAttribute="centerX" id="7vW-Rb-wSC"/>
+                            <constraint firstItem="Td8-0B-YWb" firstAttribute="trailing" secondItem="bpf-Qq-nue" secondAttribute="trailing" id="B13-LI-Nbb"/>
+                            <constraint firstItem="bpf-Qq-nue" firstAttribute="leading" secondItem="Td8-0B-YWb" secondAttribute="leading" id="UWz-F2-KDW"/>
+                            <constraint firstItem="JcU-ms-4jX" firstAttribute="top" secondItem="kOh-4J-3yr" secondAttribute="bottom" constant="8" symbolic="YES" id="YoM-LH-feM"/>
+                            <constraint firstItem="bpf-Qq-nue" firstAttribute="top" secondItem="Td8-0B-YWb" secondAttribute="top" id="aKE-I6-31f"/>
+                            <constraint firstItem="kOh-4J-3yr" firstAttribute="top" secondItem="bpf-Qq-nue" secondAttribute="bottom" constant="32" id="mrp-2t-BCF"/>
+                            <constraint firstItem="kOh-4J-3yr" firstAttribute="centerX" secondItem="Td8-0B-YWb" secondAttribute="centerX" id="y3y-4O-DPT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageDateLabel" destination="JcU-ms-4jX" id="t7j-ZI-SKQ"/>
+                        <outlet property="imageNameLabel" destination="kOh-4J-3yr" id="4j5-w4-hZ0"/>
+                        <outlet property="imageView" destination="bpf-Qq-nue" id="nSM-Ep-7fe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGE-ib-HRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="615"/>
+        </scene>
         <!--Login Page View Controller-->
         <scene sceneID="HW9-r7-ark">
             <objects>
@@ -237,6 +292,9 @@
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBC-Py-Jhq">
                                                         <rect key="frame" x="0.0" y="274" width="300" height="0.0"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" id="wpS-DY-MKU"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="1" green="0.32843366400000001" blue="0.26085713329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -317,6 +375,7 @@
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="JBC-Py-Jhq" id="hoJ-EX-cyT"/>
+                        <outlet property="errorLabelHeightConstraint" destination="wpS-DY-MKU" id="XZP-y2-3Nw"/>
                         <outlet property="passwordTextField" destination="M7s-t5-jWi" id="twv-hN-0GD"/>
                         <outlet property="phoneNumber" destination="4Vh-pV-y7O" id="fTL-sI-obT"/>
                         <outlet property="phoneNumberTextField" destination="Os4-vH-mzU" id="hhO-6V-d78"/>

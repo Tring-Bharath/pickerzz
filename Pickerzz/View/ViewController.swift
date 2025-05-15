@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, CellDelegate {
+class ViewController: BaseViewController, CellDelegate {
 
     @IBOutlet weak var toggleViewBtn: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
@@ -93,6 +93,15 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageDetailViewController") as! ImageDetailViewController
+        let imageItem = CoreDataManager.shared.fetchData()[indexPath.row]
+        imageDetailVC.imageItem = imageItem
+        imageDetailVC.navigationItem.setHidesBackButton(true, animated: true)
+        
+        self.navigationController?.pushViewController(imageDetailVC, animated: true)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -135,7 +144,6 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     
     func presentAlert(alert: UIAlertController) {
         present(alert,animated: true)
-
     }
     
     

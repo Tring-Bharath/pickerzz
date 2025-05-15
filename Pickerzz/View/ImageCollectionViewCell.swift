@@ -7,12 +7,14 @@ protocol CellDelegate{
     func presentAlert(alert:UIAlertController)
 }
 
+
 class ImageCollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak var image: UIImageView!
     
     var objectId = NSManagedObjectID()
+    var imageDetail:ImageModel?
     var alert = AlertViewModel()
     var cellDelegate:CellDelegate?
     var cellViewModel:CollectionCellViewModel?
@@ -25,6 +27,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func loadData(imageItem:ImageModel){
         
         image.image = UIImage(data: imageItem.imageItem.image!)
+        imageDetail?.imageItem = imageItem.imageItem
         objectId = imageItem.imageItem.objectID
         
     }
