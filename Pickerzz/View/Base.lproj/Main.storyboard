@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
-                                <rect key="frame" x="10" y="217" width="373" height="567"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-QF-knh">
+                                <rect key="frame" x="239" y="217" width="144" height="567"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="scrollIndicatorInsets" minX="35" minY="0.0" maxX="35" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="ahK-3D-NtU">
@@ -30,7 +30,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCollectionViewCell" id="FCk-ff-R7A">
-                                        <rect key="frame" x="35" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="8" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aZn-Cb-Yej">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -63,26 +63,52 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7J-4q-NhT">
-                                <rect key="frame" x="16" y="167" width="85" height="35"/>
+                                <rect key="frame" x="16" y="167" width="45" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="ONN-jv-4LW"/>
+                                    <constraint firstAttribute="width" constant="45" id="ONN-jv-4LW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Log Out"/>
+                                <buttonConfiguration key="configuration" style="gray" image="line.3.horizontal" catalog="system"/>
                                 <connections>
-                                    <action selector="logoutBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p3W-i8-ubq"/>
+                                    <action selector="sideBarToggleBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yd0-LY-19W"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="il6-5u-0yI" userLabel="SideBarView">
+                                <rect key="frame" x="-120" y="217" width="120" height="567"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BD-TI-OY6">
+                                        <rect key="frame" x="18" y="524" width="85" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="zts-WB-oNz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Log Out"/>
+                                        <connections>
+                                            <action selector="logOutBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="an2-hf-yzv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="0BD-TI-OY6" secondAttribute="bottom" constant="8" id="2sq-UV-lDN"/>
+                                    <constraint firstAttribute="width" constant="120" id="PzA-qv-9oD"/>
+                                    <constraint firstAttribute="trailing" secondItem="0BD-TI-OY6" secondAttribute="trailing" constant="17" id="c2G-OL-hA7"/>
+                                    <constraint firstItem="0BD-TI-OY6" firstAttribute="leading" secondItem="il6-5u-0yI" secondAttribute="leading" constant="18" id="pLD-Cp-kOq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ayL-OL-Tjc" firstAttribute="leading" secondItem="aQs-0U-2kh" secondAttribute="trailing" constant="30" id="24q-dI-dFk"/>
+                            <constraint firstItem="il6-5u-0yI" firstAttribute="top" secondItem="V7J-4q-NhT" secondAttribute="bottom" constant="15" id="ADM-SR-lKB"/>
                             <constraint firstItem="V7J-4q-NhT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="F1o-0e-he4"/>
                             <constraint firstItem="aQs-0U-2kh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="MDc-rZ-TJN"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="O1K-pe-kBZ"/>
+                            <constraint firstItem="il6-5u-0yI" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QyK-VM-CWc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w2X-QF-knh" secondAttribute="bottom" id="U7F-aD-O47"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="V7J-4q-NhT" secondAttribute="bottom" constant="15" id="UW9-o3-ZYo"/>
+                            <constraint firstItem="il6-5u-0yI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-120" id="Z0N-Te-teT"/>
                             <constraint firstItem="w2X-QF-knh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="coh-cW-ysU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w2X-QF-knh" secondAttribute="trailing" constant="10" id="hma-8A-KUE"/>
                             <constraint firstItem="V7J-4q-NhT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="m07-4d-Xub"/>
@@ -93,12 +119,13 @@
                     <navigationItem key="navigationItem" id="bSq-Sr-F7J"/>
                     <connections>
                         <outlet property="ImageCollectionView" destination="w2X-QF-knh" id="9Ye-Ls-swW"/>
+                        <outlet property="sideBarLeadingConstraint" destination="Z0N-Te-teT" id="TJz-8f-OJ2"/>
                         <outlet property="toggleViewBtn" destination="aQs-0U-2kh" id="GZE-hE-DTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.2519083969464" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-34.507042253521128"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="2Ie-Ij-R8j">
@@ -693,6 +720,7 @@
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="lock" catalog="system" width="111" height="128"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="phone" catalog="system" width="128" height="115"/>

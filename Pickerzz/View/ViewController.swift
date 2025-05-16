@@ -12,10 +12,11 @@ class ViewController: BaseViewController, CellDelegate {
     @IBOutlet weak var toggleViewBtn: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    @IBOutlet weak var sideBarLeadingConstraint: NSLayoutConstraint!
     let imagePicker = ImagePickerViewModel()
     let addAlert = AlertViewModel()
     var isCollectionView:Bool = true
-        
+    var isSideBarVisible = false
     override func viewDidLoad() {
         super.viewDidLoad()
         initSetUp()
@@ -25,7 +26,13 @@ class ViewController: BaseViewController, CellDelegate {
         imagePicker.imagePicker.delegate = self
         imagePicker.presentImagePicker(view:self,animated:true)
     }
-    @IBAction func logoutBtn(_ sender: Any) {
+    @IBAction func sideBarToggleBtn(_ sender: Any) {
+        
+        isSideBarVisible ? sideBarToggle(constant: -120) : sideBarToggle(constant: 0)
+        isSideBarVisible.toggle()
+    }
+    
+    @IBAction func logOutBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
@@ -34,16 +41,20 @@ class ViewController: BaseViewController, CellDelegate {
         if(isCollectionView){
             toggleViewBtn.setTitle("Collection View", for: .normal)
             imageCollectionView.register(UINib(nibName: "ImageTableViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageTableViewCell")
-            isCollectionView = false
         }
         else{
             toggleViewBtn.setTitle("Table View", for: .normal)
             imageCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionViewCell")
-            isCollectionView = true
         }
+        
+        isCollectionView.toggle()
+        
         UIView.transition(with: imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.imageCollectionView.reloadData()}, completion: nil)
 
-
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        sideBarToggle(constant: -120)
     }
     func initSetUp(){
         
@@ -55,12 +66,19 @@ class ViewController: BaseViewController, CellDelegate {
         CoreDataManager.shared.onDataUpdate = { [weak self] in
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
-                UIView.transition(with: strongSelf.imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self?.imageCollectionView.reloadData()}, completion: nil)
+                UIView.transition(with: strongSelf.imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {strongSelf.imageCollectionView.reloadData()}, completion: nil)
+
             }
         }
         toggleViewBtn.setTitle("Table View", for: .normal)
     }
-    
+    func sideBarToggle(constant:CGFloat){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.sideBarLeadingConstraint.constant = constant
+            self.view.layoutIfNeeded()
+            
+        })
+    }
 }
 
 extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -109,6 +127,7 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
         var cellHeight:CGFloat
         
         if(isCollectionView){
+
             cellWidth = collectionView.frame.size.width/3 - 10
             cellHeight = cellWidth
         }
