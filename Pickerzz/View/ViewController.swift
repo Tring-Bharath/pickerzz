@@ -12,11 +12,16 @@ class ViewController: BaseViewController, CellDelegate {
     @IBOutlet weak var toggleViewBtn: UIButton!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    @IBOutlet weak var imageSearchBar: UISearchBar!
+    
     @IBOutlet weak var sideBarLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     let imagePicker = ImagePickerViewModel()
     let addAlert = AlertViewModel()
     var isCollectionView:Bool = true
     var isSideBarVisible = false
+    var isSearchBarVisisble = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initSetUp()
@@ -32,7 +37,12 @@ class ViewController: BaseViewController, CellDelegate {
         isSideBarVisible.toggle()
     }
     
+    @IBAction func searchBarToggleBtn(_ sender: Any) {
+        
+        isSearchBarVisisble ? SearchBarToggle(constant:0) : SearchBarToggle(constant:45)
+    }
     @IBAction func logOutBtn(_ sender: Any) {
+        UserDefaultsManager.shared.logoutUser()
         self.dismiss(animated: true)
     }
     
@@ -49,13 +59,10 @@ class ViewController: BaseViewController, CellDelegate {
         
         isCollectionView.toggle()
         
-        UIView.transition(with: imageCollectionView, duration: 1.0, options: .transitionCrossDissolve, animations: {self.imageCollectionView.reloadData()}, completion: nil)
+        UIView.transition(with: imageCollectionView, duration: 0.5, options: .transitionCrossDissolve, animations: {self.imageCollectionView.reloadData()}, completion: nil)
 
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        sideBarToggle(constant: -120)
-    }
     func initSetUp(){
         
         imageCollectionView.delegate = self
@@ -71,6 +78,8 @@ class ViewController: BaseViewController, CellDelegate {
             }
         }
         toggleViewBtn.setTitle("Table View", for: .normal)
+        imageSearchBar.delegate = self
+        
     }
     func sideBarToggle(constant:CGFloat){
         UIView.animate(withDuration: 0.5, animations: {
@@ -79,12 +88,19 @@ class ViewController: BaseViewController, CellDelegate {
             
         })
     }
+    func SearchBarToggle(constant:CGFloat){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBarHeightConstraint.constant = constant
+            self.view.layoutIfNeeded()
+        })
+        isSearchBarVisisble.toggle()
+    }
 }
 
-extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UISearchBarDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CoreDataManager.shared.fetchData().count
+        return StoredDataManager.shared.imageItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -113,7 +129,7 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imageDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageDetailViewController") as! ImageDetailViewController
-        let imageItem = CoreDataManager.shared.fetchData()[indexPath.row]
+        let imageItem = StoredDataManager.shared.imageItems[indexPath.row]
         imageDetailVC.imageItem = imageItem
         imageDetailVC.navigationItem.setHidesBackButton(true, animated: true)
         
@@ -146,6 +162,25 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         10
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText:String)
+    {
+        print(searchText)
+        StoredDataManager.shared.imageItems = CoreDataManager.shared.fetchData()
+        if(!searchText.isEmpty){
+            StoredDataManager.shared.imageItems = StoredDataManager.shared.imageItems.filter({
+                guard let name = $0.name else{
+                    return false
+                }
+                return name.lowercased().contains(searchText.lowercased())// .hasPrefix(searchText)
+            })
+        }
+       imageCollectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

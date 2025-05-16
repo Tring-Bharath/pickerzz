@@ -16,6 +16,7 @@ class RegistrationViewModel{
         navigationController.pushViewController(vc, animated: true)
     }
     
+    
     func mobileNumberValidation(mobileNumber:String)->Bool{
         
         if(mobileNumber.count == 10){

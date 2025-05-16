@@ -23,4 +23,16 @@ class UserDefaultsManager{
         }
         return false
     }
+    
+    func isUserLoggedIn()->Bool{
+        return UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+    }
+    
+    func loginUser(){
+        UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+    }
+    
+    func logoutUser(){
+        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+    }
 }

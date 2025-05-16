@@ -12,7 +12,7 @@ class FirstPageViewController: UIViewController {
     let viewModel = RegistrationViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initSetUp()
         // Do any additional setup after loading the view.
     }
     
@@ -24,5 +24,18 @@ class FirstPageViewController: UIViewController {
         viewModel.navigatePage(viewController: "SignUpViewController", navigationController: self.navigationController!)
     }
     
+    func initSetUp(){
+        if(UserDefaultsManager.shared.isUserLoggedIn()){
+            let pickerzzVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
+            let pickerzzNavVC = UINavigationController(rootViewController: pickerzzVC)
+            pickerzzNavVC.modalPresentationStyle = .fullScreen
+            self.present(pickerzzNavVC, animated: true)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initSetUp()
+
+    }
 
 }

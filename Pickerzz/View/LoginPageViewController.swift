@@ -47,6 +47,7 @@ class LoginPageViewController: BaseViewController {
         }
 
         if(UserDefaultsManager.shared.loginUser(user: UserModel(phoneNumber: phoneNumber, password: password))){
+            UserDefaultsManager.shared.loginUser()
             let pickerzzVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
             let pickerzzNavVC = UINavigationController(rootViewController: pickerzzVC)
             pickerzzNavVC.modalPresentationStyle = .fullScreen
@@ -61,6 +62,11 @@ class LoginPageViewController: BaseViewController {
         let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewController")
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        phoneNumberTextField.text = ""
+        passwordTextField.text = ""
     }
     
     func showError(message: String) {
